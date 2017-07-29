@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "prestart": "node tools/startMessage.js",
         "start": "node tools/srcServer.js"
     },
     "keywords": [],
