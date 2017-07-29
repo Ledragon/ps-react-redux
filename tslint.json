@@ -1,0 +1,13 @@
+{
+    "rules": {
+        "quotemark": [
+            "single",
+            "jsx-single"
+        ],
+        "indent": [
+            true,
+            "spaces",
+            "4"
+        ]
+    }
+}
