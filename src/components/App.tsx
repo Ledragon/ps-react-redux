@@ -1,15 +1,18 @@
 import * as React from 'react';
+import { Route } from 'react-router-dom';
+import HomePage from './home/HomePage';
+import AboutPage from './about/AboutPage';
 
 export interface AppPropTypes {
-    children: Array<any>;
 }
 
 class App extends React.Component<AppPropTypes>{
-    render() {
+    render(): JSX.Element {
         return (
             <div className="container-fluid">
                 <p>Header here...</p>
-                {this.props.children}
+                <Route path="/" exact component={HomePage}></Route>
+                <Route path="about" component={AboutPage}></Route>
             </div>
         );
     }
