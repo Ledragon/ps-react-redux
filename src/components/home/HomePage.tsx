@@ -8,10 +8,10 @@ export interface IHomePageProps {
 class HomePage extends React.Component<IHomePageProps>{
     render(): false | JSX.Element {
         return (
-            <div className='jumbotron'>
+            <div className="jumbotron">
                 <h1>Pluralsight Administration</h1>
                 <p>React, Redux, and React Router in TypeScript for ultra-responsive web apps.</p>
-                <Link to='about' className='btn btn-primary btn-lg'></Link>
+                <Link to="about" className="btn btn-primary btn-lg"></Link>
             </div>
         );
     }

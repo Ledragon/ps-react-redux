@@ -2,7 +2,7 @@
     "rules": {
         "quotemark": [
             "single",
-            "jsx-single"
+            "jsx-double"
         ],
         "indent": [
             true,
