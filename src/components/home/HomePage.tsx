@@ -11,7 +11,7 @@ class HomePage extends React.Component<IHomePageProps>{
             <div className="jumbotron">
                 <h1>Pluralsight Administration</h1>
                 <p>React, Redux, and React Router in TypeScript for ultra-responsive web apps.</p>
-                <Link to="about" className="btn btn-primary btn-lg"></Link>
+                <Link to="about" className="btn btn-primary btn-lg">About</Link>
             </div>
         );
     }

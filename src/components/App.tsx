@@ -12,7 +12,7 @@ class App extends React.Component<AppPropTypes>{
             <div className="container-fluid">
                 <p>Header here...</p>
                 <Route path="/" exact component={HomePage}></Route>
-                <Route path="about" component={AboutPage}></Route>
+                <Route path="/about" component={AboutPage}></Route>
             </div>
         );
     }
