@@ -16,7 +16,7 @@ class Header extends React.Component<IHeaderProps>{
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='about' activeClassName='active'>
+                        <NavLink to='/about' activeClassName='active'>
                             About
                         </NavLink>
                     </li>
