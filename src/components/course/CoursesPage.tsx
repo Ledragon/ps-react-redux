@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Course } from '../../models/course';
 import { StoreState } from '../../models/storeState';
 import * as courseActions from '../../actions/courseActions';
+import CourseTable from './CourseTable';
 
 interface ICoursesPageState {
     course: Course
@@ -31,8 +32,7 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
         return (
             <div>
                 <h1>Courses</h1>
-                {this.props.courses.map(this.courseRow)}
-
+                <CourseTable courses={this.props.courses}></CourseTable>
             </div>
         );
     }
