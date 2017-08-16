@@ -11,7 +11,7 @@ interface ICoursesPageState {
 
 interface ICoursesPageProps {
     courses: Array<Course>;
-    dispatch: (action: any) => void;
+    createCourse: (course: Course) => void;
 }
 
 
@@ -36,7 +36,7 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
     }
 
     onClickSave(event: React.FormEvent<HTMLButtonElement>) {
-        this.props.dispatch(courseActions.createCourse(this.state.course));
+        this.props.createCourse(this.state.course);
     }
 
     courseRow(d: Course, i: number): JSX.Element {
@@ -69,8 +69,10 @@ function mapStateToProps(state: StoreState, ownProps: any) {
     };
 }
 
-function mapDispatchToProps() {
-
+function mapDispatchToProps(dispatch: any) {
+    return {
+        createCourse: (course: Course) => dispatch(courseActions.createCourse(course))
+    };
 }
 
-export default connect(mapStateToProps)(CoursesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
