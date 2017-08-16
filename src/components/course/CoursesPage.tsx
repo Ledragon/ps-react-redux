@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { Course } from '../../models/course';
 import { StoreState } from '../../models/storeState';
+import * as courseActions from '../../actions/courseActions';
 
 interface ICoursesPageState {
     course: Course
@@ -30,7 +31,7 @@ class CoursesPage extends React.Component<any, ICoursesPageState> {
     }
 
     onClickSave(event: React.FormEvent<HTMLButtonElement>) {
-        console.log('saving ', this.state.course.title);
+        this.props.dispatch(courseActions.createCourse(this.state.course));
     }
 
 
