@@ -1,9 +1,9 @@
 import * as React from 'react';
 
+import { Course } from '../../models/course';
+
 interface ICoursesPageState {
-    course: {
-        title: string;
-    }
+    course: Course
 }
 
 
