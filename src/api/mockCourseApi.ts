@@ -1,9 +1,10 @@
 import delay from './delay';
+import { Course } from '../models/course';
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
+const courses: Course[] = [
     {
         id: "react-flux-building-applications",
         title: "Building Applications in React and Flux",
@@ -57,16 +58,16 @@ const generateId = (course: any) => {
 
 class CourseApi {
     static getAllCourses() {
-        return new Promise((resolve, reject) => {
+        return new Promise<Course[]>((resolve, reject) => {
             setTimeout(() => {
-                resolve(Object.assign([], courses));
+                resolve(Object.assign<Course[], Course[]>([], courses));
             }, delay);
         });
     }
 
     static saveCourse(course: any) {
         course = Object.assign({}, course); // to avoid manipulating object passed in.
-        return new Promise((resolve, reject) => {
+        return new Promise<Course>((resolve, reject) => {
             setTimeout(() => {
                 // Simulate server-side validation
                 const minCourseTitleLength = 1;
