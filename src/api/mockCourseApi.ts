@@ -91,7 +91,7 @@ class CourseApi {
         });
     }
 
-    static deleteCourse(courseId: number) {
+    static deleteCourse(courseId: string) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const indexOfCourseToDelete = courses.findIndex((course: any) => {
