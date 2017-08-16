@@ -34,11 +34,15 @@ class CoursesPage extends React.Component<any, ICoursesPageState> {
         this.props.dispatch(courseActions.createCourse(this.state.course));
     }
 
+    courseRow(d: Course, i: number): JSX.Element {
+        return <div key={i}>{d.title}</div>;
+    }
 
     render(): false | JSX.Element {
         return (
             <div>
                 <h1>Courses</h1>
+                {this.props.courses.map(this.courseRow)}
                 <h2>Add course</h2>
                 <div className="form-group">
                     <input type="text"
