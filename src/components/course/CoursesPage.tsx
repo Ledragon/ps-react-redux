@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { Course } from '../../models/course';
@@ -11,7 +12,9 @@ interface ICoursesPageState {
 
 interface ICoursesPageProps {
     courses: Array<Course>;
-    createCourse: (course: Course) => void;
+    actions: {
+        createCourse: (course: Course) => void;
+    };
 }
 
 
@@ -36,7 +39,7 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
     }
 
     onClickSave(event: React.FormEvent<HTMLButtonElement>) {
-        this.props.createCourse(this.state.course);
+        this.props.actions.createCourse(this.state.course);
     }
 
     courseRow(d: Course, i: number): JSX.Element {
@@ -71,7 +74,7 @@ function mapStateToProps(state: StoreState, ownProps: any) {
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        createCourse: (course: Course) => dispatch(courseActions.createCourse(course))
+        actions: bindActionCreators(courseActions as any, dispatch)
     };
 }
 
