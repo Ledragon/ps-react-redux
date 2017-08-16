@@ -9,14 +9,14 @@ interface ICoursesPageState {
     course: Course
 }
 
-interface ICoursesPageProps{
+interface ICoursesPageProps {
     courses: Array<Course>;
     dispatch: (action: any) => void;
 }
 
 
 class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> {
-    constructor(props: any, context: any) {
+    constructor(props: ICoursesPageProps, context: any) {
         super(props, context);
 
         this.state = {
