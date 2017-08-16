@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import { Course } from '../../models/course';
+import { StoreState } from '../../models/storeState';
 
 interface ICoursesPageState {
     course: Course
@@ -50,4 +52,15 @@ class CoursesPage extends React.Component<any, ICoursesPageState> {
         );
     }
 }
-export default CoursesPage;
+
+function mapStateToProps(state: StoreState, ownProps: any) {
+    return {
+        courses: state.courses //refers to the reducer name
+    };
+}
+
+function mapDispatchToProps() {
+
+}
+
+export default connect(mapStateToProps)(CoursesPage);
