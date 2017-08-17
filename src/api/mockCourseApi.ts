@@ -65,7 +65,7 @@ class CourseApi {
         });
     }
 
-    static saveCourse(course: any) {
+    static saveCourse(course: Course) {
         course = Object.assign({}, course); // to avoid manipulating object passed in.
         return new Promise<Course>((resolve, reject) => {
             setTimeout(() => {

@@ -5,4 +5,5 @@ export interface Course{
     authorId: string;
     length: string;
     category: string;
+    [index: string]: string;
 }

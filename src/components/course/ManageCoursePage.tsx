@@ -14,6 +14,9 @@ interface ManageCoursePageState {
 interface ManageCoursePageProps {
     course: Course;
     authors: { text: string, value: string }[];
+    actions: {
+        saveCourse: (course: Course) => any;
+    };
 }
 
 class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
@@ -29,10 +32,15 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     }
 
     onSave(event: React.FormEvent<HTMLButtonElement>) {
-
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
     }
-    onChange(event: React.FormEvent<any>) {
 
+    onChange(event: React.FormEvent<any>) {
+        const field = event.currentTarget.name;
+        let course = Object.assign({}, this.state.course);
+        course[field] = event.currentTarget.value;
+        return this.setState({ course: course });
     }
 
     render(): false | JSX.Element {

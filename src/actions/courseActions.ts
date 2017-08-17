@@ -8,6 +8,12 @@ export function createCourse(course: Course) {
 export function loadCoursesSuccess(courses: Course[]) {
     return { type: Constants.LOAD_COURSES_SUCCESS, courses };
 }
+export function updateCourseSuccess(course: Course) {
+    return { type: Constants.UPDATE_COURSE_SUCCESS, course };
+}
+export function createCourseSuccess(course: Course) {
+    return { type: Constants.CREATE_COURSE_SUCCESS, course };
+}
 
 export function loadCourses() {
     return function (dispatch: any) {
@@ -19,5 +25,20 @@ export function loadCourses() {
                 console.error(error);
                 throw (error);
             });
+    }
+}
+
+export function saveCourse(course: Course) {
+    return function (dispatch: any, getState: any) {
+        return courseApi.saveCourse(course)
+            .then(data => {
+                data.id
+                    ? dispatch(updateCourseSuccess(data))
+                    : dispatch(createCourseSuccess(data));
+            })
+            .catch(error => {
+                console.error(error);
+                throw (error);
+            })
     }
 }

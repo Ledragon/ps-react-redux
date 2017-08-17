@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter, RouteProps} from 'react-router-dom';
 
 import { Course } from '../../models/course';
 import { StoreState } from '../../models/storeState';
@@ -16,16 +17,22 @@ interface ICoursesPageProps {
     actions: {
         createCourse: (course: Course) => void;
     };
+    history: any;
 }
 
 
 class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> {
     constructor(props: ICoursesPageProps, context: any) {
         super(props, context);
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
     courseRow(d: Course, i: number): JSX.Element {
         return <div key={i}>{d.title}</div>;
+    }
+
+    redirectToAddCoursePage() {
+        this.props.history.push('/course');
     }
 
     render(): false | JSX.Element {
@@ -33,6 +40,11 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
             <div>
                 <h1>Courses</h1>
                 <CourseTable courses={this.props.courses}></CourseTable>
+                <button
+                    className="btn btn-default"
+                    type="submit"
+                    onClick={this.redirectToAddCoursePage}
+                >Add course</button>
             </div>
         );
     }
@@ -50,4 +62,4 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CoursesPage));
