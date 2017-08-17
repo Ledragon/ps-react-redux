@@ -2,10 +2,10 @@ import * as React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-import { Course } from '../../models/course';
+import { Course } from '../../models/index';
 
 
-const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }: { course: Course, allAuthors: Array<any>, onSave: any, onChange: any, loading: boolean, errors: any }) => {
+const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }: { course: Course, allAuthors: Array<{ text: string; value: string;}>, onSave: any, onChange: any, loading: boolean, errors: any }) => {
     return (
         <form>
             <TextInput

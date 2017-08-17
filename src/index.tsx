@@ -5,19 +5,21 @@ import { Provider } from 'react-redux';
 
 import App from './components/App';
 import configureStore from './store/configureStore';
-import {loadCourses} from './actions/courseActions';
+import { loadCourses } from './actions/courseActions';
+import { loadAuthors } from './actions/authorActions';
 
 import '../styles.css';
 require('../node_modules/bootstrap/dist/css/bootstrap.css');
 
 const store = configureStore();
 store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
             <App />
         </Router>
-    </Provider>    ,
+    </Provider>,
     document.getElementById('example')
 )

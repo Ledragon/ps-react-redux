@@ -5,7 +5,6 @@ interface Option {
     text: string;
 }
 
-
 const SelectInput = ({ name, label, onChange, defaultOption, value, error, options }: { name: string, label: string, onChange: any, defaultOption: string, value: string, error: any, options: Option[] }) => {
     return (
         <div className="form-group">

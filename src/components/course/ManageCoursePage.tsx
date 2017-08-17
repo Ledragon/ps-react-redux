@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
-import { Course } from '../../models/course';
+import { Course, StoreState } from '../../models/index';
 
 interface ManageCoursePageState {
     course: Course;
@@ -13,6 +13,7 @@ interface ManageCoursePageState {
 
 interface ManageCoursePageProps {
     course: Course;
+    authors: { text: string, value: string }[];
 }
 
 class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
@@ -41,7 +42,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
                 <CourseForm
                     course={this.state.course}
                     errors={this.state.errors}
-                    allAuthors={[]}
+                    allAuthors={this.props.authors}
                     loading={false}
                     onChange={this.onChange}
                     onSave={this.onSave}
@@ -51,7 +52,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     }
 }
 
-const mapStateToProps = (state: any, ownProps: any) => {
+const mapStateToProps = (state: StoreState, ownProps: any) => {
     let course: Course = {
         id: '',
         authorId: '',
@@ -59,9 +60,16 @@ const mapStateToProps = (state: any, ownProps: any) => {
         length: '',
         title: '',
         watchHref: ''
-    }
+    };
+    const formattedAuthors = state.authors.map(a => {
+        return {
+            text: `${a.firstName} ${a.lastName}`,
+            value: a.id
+        }
+    });
     return {
-        course
+        course,
+        authors: formattedAuthors
     };
 }
 

@@ -1,4 +1,6 @@
 import { Course } from './course';
+import { Author } from './author';
 export interface StoreState {
-    courses: any;
+    courses: Course[];
+    authors: Author[];
 }
