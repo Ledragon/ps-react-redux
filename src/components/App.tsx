@@ -16,7 +16,7 @@ class App extends React.Component<AppPropTypes>{
                 <Header></Header>
                 <Route path="/" exact component={HomePage}></Route>
                 <Route path="/courses" component={CoursesPage}></Route>
-                <Route path="/course" component={ManageCoursePage}></Route>
+                <Route path="/course" component={ManageCoursePage} exact></Route>
                 <Route path="/course/:id" component={ManageCoursePage}></Route>
                 <Route path="/about" component={AboutPage}></Route>
             </div>
