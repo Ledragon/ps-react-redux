@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Course } from '../../models/course';
 import { StoreState } from '../../models/storeState';
@@ -38,13 +38,13 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
     }
 }
 
-function mapStateToProps(state: StoreState, ownProps: any) {
+const mapStateToProps = (state: StoreState, ownProps: any) => {
     return {
         courses: state.courses //refers to the reducer name
     };
 }
 
-function mapDispatchToProps(dispatch: any) {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         actions: bindActionCreators(courseActions as any, dispatch)
     };

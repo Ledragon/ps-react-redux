@@ -2,7 +2,7 @@ import * as React from 'React';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }) => {
+const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }: any) => {
     return (
         <form>
             <h1>Manage course</h1>
@@ -12,7 +12,10 @@ const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }) =
                 value={course.title}
                 onChange={onChange}
                 error={errors.title}
+                placeholder="Title"
             />
         </form>
     )
 }
+
+export default CourseForm;

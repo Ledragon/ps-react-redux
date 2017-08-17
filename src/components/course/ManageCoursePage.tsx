@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as courseActions from '../../actions/courseActions';
+import CourseForm from './CourseForm';
 
 interface ManageCoursePageState {
 
@@ -18,14 +20,14 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     }
     render(): false | JSX.Element {
         return (
-            <h1>Manage</h1>
+            <CourseForm></CourseForm>
         );
     }
 }
 
-const mapStateToProps = (state: any, ownProps: ManageCoursePageProps) => {
+const mapStateToProps = (state: any, ownProps: any) => {
     return {
-        prop: state.prop
+        state: state
     }
 }
 
