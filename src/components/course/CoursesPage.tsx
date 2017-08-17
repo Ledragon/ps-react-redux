@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter, RouteProps} from 'react-router-dom';
+import { withRouter, RouteProps } from 'react-router-dom';
 
 import { Course } from '../../models/course';
 import { StoreState } from '../../models/storeState';
@@ -43,8 +43,9 @@ class CoursesPage extends React.Component<ICoursesPageProps, ICoursesPageState> 
                 <button
                     className="btn btn-default"
                     type="submit"
-                    onClick={this.redirectToAddCoursePage}
-                >Add course</button>
+                    onClick={this.redirectToAddCoursePage}>
+                    Add course
+                </button>
             </div>
         );
     }
