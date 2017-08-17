@@ -1,5 +1,7 @@
 import * as Constants from '../actions/actionTypes';
-export default function courseReducer(state: any = [], action: any): any {
+import initialState from './initialState';
+
+export default function courseReducer(state: any = initialState.courses, action: any): any {
     switch (action.type) {
         case Constants.CREATE_COURSE:
             return [...state, Object.assign({}, action.course)];
