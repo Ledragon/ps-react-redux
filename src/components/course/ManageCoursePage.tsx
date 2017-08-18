@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import * as courseActions from '../../actions/courseActions';
@@ -9,6 +10,7 @@ import { Course, StoreState } from '../../models/index';
 interface ManageCoursePageState {
     course: Course;
     errors?: any;
+    redirect: boolean;
 }
 
 interface ManageCoursePageProps {
@@ -27,13 +29,18 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
         this.onChange = this.onChange.bind(this);
         this.state = {
             course: Object.assign({}, this.props.course),
-            errors: {}
+            errors: {},
+            redirect: false
         };
     }
 
     onSave(event: React.FormEvent<HTMLButtonElement>) {
         event.preventDefault();
-        this.props.actions.saveCourse(this.state.course);
+        this.props.actions.saveCourse(this.state.course)
+            .then(() => {
+                this.setState({ redirect: true });
+            });
+
     }
 
     onChange(event: React.FormEvent<any>) {
@@ -44,6 +51,9 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     }
 
     render(): false | JSX.Element {
+        if (this.state.redirect) {
+            return <Redirect to="/courses" />;
+        }
         return (
             <div>
                 <h1>Manage course</h1>
