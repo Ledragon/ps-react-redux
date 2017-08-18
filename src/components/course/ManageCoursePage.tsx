@@ -34,6 +34,12 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
         };
     }
 
+    componentWillReceiveProps(nextProps:ManageCoursePageProps) {
+        if (this.props.course.id !== nextProps.course.id) {
+            this.setState({ course: Object.assign({}, nextProps.course) }); // When f5 is hit
+        }
+    }
+
     onSave(event: React.FormEvent<HTMLButtonElement>) {
         event.preventDefault();
         this.props.actions.saveCourse(this.state.course)
@@ -70,7 +76,23 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     }
 }
 
+function getCourseById(courses: Array<Course>, courseId: string): Course {
+    var filtered = courses.filter(c => c.id === courseId);
+    if (filtered.length > 0) {
+        return filtered[0];
+    }
+    return {
+        id: '',
+        authorId: '',
+        category: '',
+        length: '',
+        title: '',
+        watchHref: ''
+    };
+}
+
 const mapStateToProps = (state: StoreState, ownProps: any) => {
+    const courseId = ownProps.match.params.id;
     let course: Course = {
         id: '',
         authorId: '',
@@ -79,6 +101,9 @@ const mapStateToProps = (state: StoreState, ownProps: any) => {
         title: '',
         watchHref: ''
     };
+    if (courseId) {
+        course = getCourseById(state.courses, courseId);
+    }
     const formattedAuthors = state.authors.map(a => {
         return {
             text: `${a.firstName} ${a.lastName}`,
