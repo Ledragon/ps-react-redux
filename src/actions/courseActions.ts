@@ -1,7 +1,7 @@
 import { Course } from '../models/course';
 import * as Constants from './actionTypes';
 import courseApi from '../api/mockCourseApi';
-import { beginAjaxCall } from './ajaxStatusAction';
+import { beginAjaxCall, ajaxCallError } from './ajaxStatusAction';
 
 export function createCourse(course: Course) {
     return { type: Constants.CREATE_COURSE, course };
@@ -41,6 +41,7 @@ export function saveCourse(course: Course) {
             })
             .catch(error => {
                 console.error(error);
+                dispatch(ajaxCallError(error));
                 throw (error);
             })
     }
