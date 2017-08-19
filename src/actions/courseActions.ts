@@ -1,6 +1,7 @@
 import { Course } from '../models/course';
 import * as Constants from './actionTypes';
 import courseApi from '../api/mockCourseApi';
+import { beginAjaxCall } from './ajaxStatusAction';
 
 export function createCourse(course: Course) {
     return { type: Constants.CREATE_COURSE, course };
@@ -17,6 +18,7 @@ export function createCourseSuccess(course: Course) {
 
 export function loadCourses() {
     return function (dispatch: any) {
+        dispatch(beginAjaxCall());
         return courseApi.getAllCourses()
             .then(courses => {
                 dispatch(loadCoursesSuccess(courses));
@@ -30,6 +32,7 @@ export function loadCourses() {
 
 export function saveCourse(course: Course) {
     return function (dispatch: any, getState: any) {
+        dispatch(beginAjaxCall());
         return courseApi.saveCourse(course)
             .then(data => {
                 data.id
