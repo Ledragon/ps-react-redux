@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import * as toastr from 'toastr';
 
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
@@ -11,6 +12,7 @@ interface ManageCoursePageState {
     course: Course;
     errors?: any;
     redirect: boolean;
+    saving: boolean;
 }
 
 interface ManageCoursePageProps {
@@ -31,10 +33,11 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
             course: Object.assign({}, this.props.course),
             errors: {},
             redirect: false
+            , saving: false
         };
     }
 
-    componentWillReceiveProps(nextProps:ManageCoursePageProps) {
+    componentWillReceiveProps(nextProps: ManageCoursePageProps) {
         if (this.props.course.id !== nextProps.course.id) {
             this.setState({ course: Object.assign({}, nextProps.course) }); // When f5 is hit
         }
@@ -42,9 +45,15 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
 
     onSave(event: React.FormEvent<HTMLButtonElement>) {
         event.preventDefault();
+        this.setState({ saving: true });
         this.props.actions.saveCourse(this.state.course)
             .then(() => {
-                this.setState({ redirect: true });
+                this.setState({ redirect: true, saving: false });
+                toastr.success('Course saved');
+            })
+            .catch(() => {
+                toastr.error('Failed to save');
+                this.setState({ saving: false });
             });
 
     }
@@ -67,7 +76,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
                     course={this.state.course}
                     errors={this.state.errors}
                     allAuthors={this.props.authors}
-                    loading={false}
+                    loading={this.state.saving}
                     onChange={this.onChange}
                     onSave={this.onSave}
                 ></CourseForm>
@@ -123,4 +132,4 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage));

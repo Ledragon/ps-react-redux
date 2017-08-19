@@ -16,41 +16,43 @@ interface CourseFormProps {
 const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }: CourseFormProps) => {
     return (
         <form>
-            <TextInput
-                name="title"
-                label="Title"
-                value={course.title}
-                onChange={onChange}
-                error={errors.title}
-                placeholder="Title"
-            />
-            <SelectInput
-                name="authorId"
-                defaultOption="Select author"
-                label="Select author"
-                options={allAuthors}
-                onChange={onChange}
-                value={course.authorId}
-                error={{}}
-            >
-            </SelectInput>
-            <TextInput
-                name="category"
-                label="Category"
-                value={course.category}
-                onChange={onChange}
-                error={errors.category}
-                placeholder="Insert category here"
-            />
-            <TextInput
-                name="length"
-                label="Length"
-                value={course.length}
-                onChange={onChange}
-                error={errors.length}
-                placeholder="Course length"
-            />
-            <button className="btn btn-sm btn-primary" type="submit" onClick={onSave}>Save</button>
+            <fieldset disabled={loading}>
+                <TextInput
+                    name="title"
+                    label="Title"
+                    value={course.title}
+                    onChange={onChange}
+                    error={errors.title}
+                    placeholder="Title"
+                />
+                <SelectInput
+                    name="authorId"
+                    defaultOption="Select author"
+                    label="Select author"
+                    options={allAuthors}
+                    onChange={onChange}
+                    value={course.authorId}
+                    error={{}}
+                >
+                </SelectInput>
+                <TextInput
+                    name="category"
+                    label="Category"
+                    value={course.category}
+                    onChange={onChange}
+                    error={errors.category}
+                    placeholder="Insert category here"
+                />
+                <TextInput
+                    name="length"
+                    label="Length"
+                    value={course.length}
+                    onChange={onChange}
+                    error={errors.length}
+                    placeholder="Course length"
+                />
+                <button className="btn btn-sm btn-primary" type="submit" onClick={onSave}>Save</button>
+            </fieldset>
         </form>
     )
 }

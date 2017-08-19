@@ -10,6 +10,7 @@ import { loadAuthors } from './actions/authorActions';
 
 import '../styles.css';
 require('../node_modules/bootstrap/dist/css/bootstrap.css');
+require('../node_modules/toastr/build/toastr.min.css');
 
 const store = configureStore();
 store.dispatch(loadCourses());
