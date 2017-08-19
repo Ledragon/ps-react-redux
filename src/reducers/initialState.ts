@@ -1,6 +1,7 @@
 import { StoreState } from '../models/storeState';
 const initialState: StoreState = {
     authors: [],
-    courses: []
+    courses: [],
+    ajaxCallsCount: 0
 };
 export default initialState;
